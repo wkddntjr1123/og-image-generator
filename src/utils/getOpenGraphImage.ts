@@ -7,14 +7,15 @@ export default async function getOpenGraphImage(query) {
     const path = new URLSearchParams(query).toString();
     const url = `${baseUrl}?${path}`;
     const ogImageDir = `./public/images/og`;
-    const imagePath = `${ogImageDir}/${query.title}.png`;
-    const publicPath = `${baseUrl}/images/og/${query.title}.png`;
+    const imgName = `${decodeURI(query.title)}.png`;
+    const imagePath = `${ogImageDir}/${imgName}`;
+    const publicPath = encodeURI(`${baseUrl}/images/og/${imgName}`);
 
     try {
         fs.statSync(imagePath);
         return publicPath;
     } catch (e) {
-        console.log(`generating og image for ${path}`);
+        console.log(`generating og image for ${publicPath}`);
     }
 
     const browser = await chromium.launch({ headless: true });
