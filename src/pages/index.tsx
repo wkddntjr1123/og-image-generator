@@ -9,6 +9,8 @@ export default function Home() {
   const router = useRouter()
   const searchParams = new URLSearchParams(router.asPath.split(/\?/)[1]);
   const title = searchParams.get('title');
+  const username = searchParams.get('username');
+  const imgUrl = searchParams.get('image') || '/empty.png';
 
   return (
       <>
@@ -38,9 +40,9 @@ export default function Home() {
                 borderRadius="50%"
                 overflow="hidden"
             >
-              <Image src="https://wslog.dev/profile.webp"  alt='og image' width={1200} height={630}/>
+              <Image src={imgUrl}  alt='profile image' width={1200} height={630}/>
             </chakra.div>
-            <Heading fontSize="2rem" color='white'>wkddntjr1123</Heading>
+            <Heading fontSize="2rem" color='white'>{username}</Heading>
           </HStack>
         </chakra.div>
       </>
