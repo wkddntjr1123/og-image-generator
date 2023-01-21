@@ -3,7 +3,7 @@ import { createHash } from 'crypto';
 import { chromium } from 'playwright';
 
 export default async function getOpenGraphImage(query) {
-    const baseUrl = 'https://og-image-generator-olive.vercel.app/'
+    const baseUrl = 'https://og-image-generator-olive.vercel.app'
     const path = new URLSearchParams(query).toString();
     const url = `${baseUrl}?${path}`;
     const ogImageDir = `./public/images/og`;
